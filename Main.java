@@ -1,4 +1,8 @@
 public class Main {
 
-    int a;
+    public static void Main(String[] args){
+
+
+
+    }
 }
