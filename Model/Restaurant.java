@@ -13,8 +13,32 @@ private ArrayList<Product> products= new ArrayList();
   }
     
   private void initEmployees(){
-  //add employees here
+  //add employees  from here
   }
   
+  public void listEmployees(){
+  for(Employee employee:employees){
+    System.out.println(employee);
+  }}
+  
+  
+  private void initProducts(){
+    
+    //add products from here
 }
-
+  public void addCook(String name, double salary){
+    
+    Cook cook= new Cook();
+    cook.setName(name);
+    cook.setSalary(salary);
+    employees.add(waiter);
+  }
+    
+    
+  public Waiter assignWaiter(){
+    ArrayList<Waiter> waiters= new ArrayLists<>();
+    for (Employee employee: employees){
+       if()
+  
+  
+}
