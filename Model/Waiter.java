@@ -12,5 +12,10 @@ private double orderRate;
 		this.orderRate = 0.10;
 		ordersRecieved = new ArrayList<>();
 	}
+	public Waiter() {
+		super();
+		orderRate = 0.10;
+	    ordersRecieved = new ArrayList<>();
+	}
 
 }
