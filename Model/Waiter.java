@@ -27,4 +27,11 @@ private double orderRate;
 		}
 		return waiterWage;
 	}
+		public void createOrder(Order order) 
+	{
+		ordersRecieved.add(order);
+	}
+	public ArrayList<Order> getOrdersReceived(){
+		return this.ordersRecieved;
+	}
 }
