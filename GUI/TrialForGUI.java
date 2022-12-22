@@ -33,4 +33,12 @@ public class TrialForGUI extends JFrame implements ActionListener {
     txt.setFont(font);
     cont.add(txt);
   }
+  public void TrialForGUI(int w, int h) {
+        frame = new JFrame();
+        panel = new JPanel(new GridLayout(1,2));
+        button1 = new JButton("Button1");
+        button2 = new JButton("Button2");
+        width = w;
+        height = h;
+    }
 }
