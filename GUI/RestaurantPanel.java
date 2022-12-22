@@ -70,11 +70,15 @@ public class RestaurantPanel extends JPanel {
                 });
             }
         });
-    }
-        
-            public Restaurant getRestaurant(){
-                return restaurant;
+        calculateExpensesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                double totalExpenses = restaurant.calculateTotalExpenses();
+                JOptionPane dialog = new JOptionPane("Total Expenses: " + totalExpenses);
+                panel.add(dialog);
             }
+        });
+    }        
+    public Restaurant getRestaurant(){
+        return restaurant;
+    }
 }
-
-//continue with calculateExpensesButton.ActionListener
