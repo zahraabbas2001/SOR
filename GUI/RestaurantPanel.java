@@ -54,6 +54,27 @@ public class RestaurantPanel extends JPanel {
         });
         this.add(panel);
 
-    //continue with adding AddCookButton, addWaiterButton, calculateExpensesButton ActionListener
+        addWaiterButton.addActionListener(new ActionListener() {
+	
+            public void actionPerformed(ActionEvent e) {
+                JLabel label = new JLabel("Name: ");
+                panel.add(label);
+                JButton button = new JButton("Add");
+                panel.add(button);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JOptionPane dialog = new JOptionPane("Waiter added successfully");
+                        panel.add(dialog);
+                    }
+                });
+            }
+        });
     }
+        
+            public Restaurant getRestaurant(){
+                return restaurant;
+            }
 }
+
+//continue with calculateExpensesButton.ActionListener
