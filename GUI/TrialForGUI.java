@@ -41,4 +41,17 @@ public class TrialForGUI extends JFrame implements ActionListener {
         width = w;
         height = h;
     }
+  public void actionPerformed(ActionEvent E) {
+        if (E.getSource() == item1) {
+            JFileChooser F = new JFileChooser(".");
+            F.showOpenDialog(null);
+        }
+        if (E.getSource() == item2) {
+            System.exit(0);
+        }
+    }
+   public static void main(String args[]) {
+        new TrialForGUI();
+
+    }
 }
