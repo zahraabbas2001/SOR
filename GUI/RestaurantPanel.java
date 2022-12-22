@@ -33,7 +33,7 @@ public class RestaurantPanel extends JPanel {
         this.add(panel);
 
         addCookButton.addActionListener(new ActionListener() {
-            public void actionPerformed(Action Event e){
+            public void actionPerformed(ActionEvent e){
                 JLable label = new JLabel("Name: ");
                 JLabel label2 = new JLabel("Salary: ");
                 panel.add(label);
