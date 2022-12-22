@@ -53,5 +53,26 @@ private ArrayList<Product> products= new ArrayList();
 		Kidsproducts.add(new Beverage("Lemonade", 2, 0.3));
 		Kidsproducts.add(new Dessert("Ice Cream", 3, 0.5, 0.5));
 		products.add(new MenuProduct("Kids Menu", Kidsproducts));
+	} 	public void addCook(String name, double salary) 
+	{
+		/*JSONObject file = new JSONObject();
+
+		file.put("name", name);
+		file.put("salary", salary);
+
+		System.out.print(file);
+
+		try {
+			FileWriter file1 = new FileWriter("E:/output.json");
+			file.write(file.toJSONString());
+			file.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}*/
+
+		Cook cook = new Cook();
+		cook.setName(name);
+		cook.setSalary(salary);
+		employees.add(cook);
 	}
 	
