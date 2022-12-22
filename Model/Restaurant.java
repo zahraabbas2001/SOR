@@ -75,4 +75,24 @@ private ArrayList<Product> products= new ArrayList();
 		cook.setSalary(salary);
 		employees.add(cook);
 	}
+	public void addWaiter(String name)
+	{
+		Waiter waiter = new Waiter();
+		waiter.setName(name);
+		employees.add(waiter);
+	}
+	public Waiter assignWaiter()
+	{
+		ArrayList<Waiter> waiters = new ArrayList<>();
+		for(Employee employee : employees)
+		{
+			if(employee instanceof Waiter)
+			{
+				waiters.add((Waiter)employee);
+			}
+		}
+		Random rand = new Random();
+		int randomIndex = rand.nextInt(waiters.size());
+		return waiters.get(randomIndex);
+	}
 	
