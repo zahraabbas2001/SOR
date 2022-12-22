@@ -95,4 +95,29 @@ private ArrayList<Product> products= new ArrayList();
 		int randomIndex = rand.nextInt(waiters.size());
 		return waiters.get(randomIndex);
 	}
-	
+		public double calculateEmployeeExpenses()
+	{
+		double employeesExpense = 0.0;
+		for(Employee employee : employees) 
+		{
+			employeesExpense += employee.calculateExpense();
+		}
+		return employeesExpense;
+	}
+	public double calculateOrderExpenses()
+	{
+		ArrayList<Order> orderReceivedList = new ArrayList<>();
+		double ordersExpense = 0.0;
+		for(Employee employee : employees)
+		{
+			if(employee instanceof Waiter)
+	    	{
+	    		orderReceivedList = ((Waiter) employee).getOrdersReceived();
+	    		for(Order order : orderReceivedList) 
+	    		{
+	    			ordersExpense += order.calculateOrderExpenses();
+	    		}
+	    	}
+		}
+		return ordersExpense;
+	}
