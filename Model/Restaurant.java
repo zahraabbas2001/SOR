@@ -121,3 +121,34 @@ private ArrayList<Product> products= new ArrayList();
 		}
 		return ordersExpense;
 	}
+		public double calculateExpenses()
+	{
+		return this.calculateEmployeeExpenses() + this.calculateOrderExpenses();
+	}
+	public double calculateRevenue()
+	{
+		ArrayList<Order> orderReceivedList = new ArrayList<>();
+		double totalRevenue = 0.0;
+	    for(Employee employee : employees)
+	    {
+	    	if(employee instanceof Waiter)
+	    	{
+	    		orderReceivedList = ((Waiter) employee).getOrdersReceived();
+	    		for(Order order : orderReceivedList) 
+	    		{
+	    			totalRevenue += order.calculateTotalPrice();
+	    		}
+	    	}
+	    }
+		return totalRevenue;
+	}
+	public ArrayList<Product> getProducts()
+	{
+		return products;
+	}
+	public ArrayList<Employee> getEmployees() {
+		return employees;
+	}
+
+	
+}
