@@ -1,3 +1,5 @@
+package Model;
+
 public class Dessert extends Product {
   
   public Dessert(String name, double sellingPrice, double purchasePrice, double utilityCost) {
