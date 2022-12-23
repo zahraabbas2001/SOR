@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Model.*;
+
 public class RestaurantPanel extends JPanel {
     private AddCookAction AddCookAction;
     private Restaurant restaurant;
@@ -34,7 +36,7 @@ public class RestaurantPanel extends JPanel {
 
         addCookButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
-                JLable label = new JLabel("Name: ");
+                JLabel label = new JLabel("Name: ");
                 JLabel label2 = new JLabel("Salary: ");
                 panel.add(label);
                 panel.add(label2);

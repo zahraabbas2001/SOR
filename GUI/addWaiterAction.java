@@ -1,3 +1,5 @@
+package GUI;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,13 +9,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class AddWaiterAction  implements ActionListener {
+import Model.*;
+
+public class addWaiterAction  implements ActionListener {
     private Restaurant restaurant;
     private RestaurantPanel restaurantPanel;
 
-    public AddWaiterAction(RestaurantPanel restaurantPanel,Restaurant restaurant) {
-        this.restaurantPanel=restaurantPanel;
+    public addWaiterAction(RestaurantPanel restaurantPanel, Restaurant restaurant) {
+        this.restaurantPanel = restaurantPanel;
         this.restaurant = restaurant;
+    }
+
+    public void createButton() {
+        JButton addWaiterButton = new JButton("Add Waiter");
+        addWaiterButton.addActionListener(this);
+        restaurantPanel.add(addWaiterButton);
     }
 
     public void actionPerformed(ActionEvent w) {

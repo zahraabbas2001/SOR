@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import restaurantManagementSystem.Restaurant;
+import Model.Restaurant;
 
-public class Gui {
+public class GUI {
 
 	public static void main(String[] args) {
 		Restaurant restaurant = new Restaurant();
