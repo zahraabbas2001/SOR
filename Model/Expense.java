@@ -1,6 +1,5 @@
-package Model;
+package restaurantManagementSystem;
 
-public interface Expense
-{
-	public double calculateExpense();
+public interface Expense {
+    double calculateExpense();
 }
