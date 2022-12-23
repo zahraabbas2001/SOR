@@ -39,5 +39,19 @@ public class Order
 		}
 		return totalPrice;
 	}
+			public void giveBill()
+	{
+		System.out.println("Your bill is " + calculateTotalPrice());
 	}
+
+	public double calculateOrderExpenses() {
+		double orderExpense = 0.0;
+		for(Product orderedProduct: orderedProducts) {
+			orderExpense += orderedProduct.calculateExpense();
+		}
+		return orderExpense;
+	}
+
+}
+	
 
