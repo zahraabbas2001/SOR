@@ -1,4 +1,4 @@
-package restaurantManagementSystem;
+package Model;
 
 public class Cook extends Employee {
     private double salary;

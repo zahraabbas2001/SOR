@@ -1,4 +1,6 @@
-package restaurantManagementSystem;
+package Model;
+
+import Model.Product;
 
 public class Dessert extends Product {
     public Dessert(String name, double sellingPrice, double purchasePrice, double utilityCost) {

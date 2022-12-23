@@ -1,4 +1,4 @@
-package restaurantManagementSystem;
+package Model;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

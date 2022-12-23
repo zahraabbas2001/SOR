@@ -1,4 +1,6 @@
-package restaurantManagementSystem;
+package Model;
+
+import Model.Product;
 
 public class Beverage extends Product {
     public Beverage(String name, double sellingPrice, double purchasePrice) {
