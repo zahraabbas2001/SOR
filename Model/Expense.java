@@ -1,7 +1,6 @@
 package Model;
 
-public class Expense {
-
-
-    public double calculateExpense();
+public interface Expense
+{
+	public double calculateExpense();
 }
