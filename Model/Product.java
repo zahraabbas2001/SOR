@@ -1,7 +1,8 @@
 package Model;
 
 public class Product implements Expense
-{	private String name;
+{
+	private String name;
 	private double purchasePrice;
 	private double sellingPrice;
 	private double utilityCost;
@@ -41,7 +42,7 @@ public class Product implements Expense
 	{
 		this.sellingPrice = sellingPrice ;
 	}
-	public void setPurchasePrice(double purchasePrice) 
+	public void setPurchasePrice(double purchasePrice)
 	{
 		this.purchasePrice = purchasePrice;
 	}
@@ -58,5 +59,6 @@ public class Product implements Expense
 		return 0;
 	}
 
-}
 
+
+}

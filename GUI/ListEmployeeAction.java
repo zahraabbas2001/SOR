@@ -13,7 +13,7 @@ import Model.Restaurant;
 public class ListEmployeeAction implements ActionListener{
     private RestaurantPanel restaurantPanel;
 
-    public ListEmployeeAction(RestaurantPanel restaurantPanel){
+    public void ListEmployeeAction(RestaurantPanel restaurantPanel){
         this.restaurantPanel = restaurantPanel;
     }
     @Override

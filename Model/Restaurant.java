@@ -1,45 +1,30 @@
 package Model;
 
-import java.io.IOException;
-import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
-
-public class Restaurant
-{
-
-	private static final String DB_USER = "root";
-	private static final String DB_PASS = "123Zaraaa_";
-	private static final String URL = "jdbc:mysql://localhost:3306/sor";
-	private static Connection connection = null;
-
-	public static void establishConnection() {
-		try {
-			connection = DriverManager.getConnection(URL, DB_USER, DB_PASS);
-		} catch (SQLException e) {
-			throw new RuntimeException("unhandled", e);
-		}
-	}
+public class Restaurant {
 	private ArrayList<Employee> employees = new ArrayList<>();
 	private ArrayList<Product> products = new ArrayList<>();
 
 	public Restaurant()
 	{
-		establishConnection();
+		initEmployees();
 		initProducts();
 	}
 
-	public void listEmployees() throws SQLException {
-		Statement stmt = connection.createStatement();
-		String sql2 = "SELECT name FROM Cook";
-		ResultSet rs = stmt.executeQuery(sql2);
-		while (rs.next()) {
-			System.out.println(rs.getString("name"));
-		}
-		String sql = "SELECT name FROM Waiter";
-		ResultSet rs2 = stmt.executeQuery(sql);
-		while (rs2.next()) {
-			System.out.println(rs2.getString("name"));
+	private void initEmployees()
+	{
+		addCook("Monica",100);
+		addWaiter("Ross");
+		addWaiter("Phoebe");
+		addWaiter("Rachel");
+	}
+	public void listEmployees()
+	{
+		for(Employee employee : employees)
+		{
+			System.out.println(employee);
 		}
 	}
 
@@ -72,20 +57,18 @@ public class Restaurant
 		products.add(new MenuProduct("Kids Menu", Kidsproducts));
 	}
 
-	public void addCook(String name, double salary) throws IOException, SQLException {
-
-		Statement stmt = connection.createStatement();
-		String sql =  "INSERT INTO Cook (name, salary) " +
-				"VALUES ('" + name + "', " + salary + ")";
-		stmt.executeUpdate(sql);
-
+	public void addCook(String name, double salary)
+	{
+		Cook cook = new Cook();
+		cook.setName(name);
+		cook.setSalary(salary);
+		employees.add(cook);
 	}
-	public void addWaiter(String name, int salary) throws IOException, SQLException {
-
-		Statement stmt = connection.createStatement();
-		String sql =  "INSERT INTO Waiter (name, salary) " +
-				"VALUES ('" + name + "', " + salary + ")";
-		stmt.executeUpdate(sql);
+	public void addWaiter(String name)
+	{
+		Waiter waiter = new Waiter();
+		waiter.setName(name);
+		employees.add(waiter);
 	}
 	public Waiter assignWaiter()
 	{
@@ -121,7 +104,7 @@ public class Restaurant
 				orderReceivedList = ((Waiter) employee).getOrdersReceived();
 				for(Order order : orderReceivedList)
 				{
-					ordersExpense += Order.calculateOrderExpenses();
+					ordersExpense += order.calculateOrderExpenses();
 				}
 			}
 		}
@@ -154,11 +137,3 @@ public class Restaurant
 	}
 
 }
-
-
-
-// Implement the rest of the class
-
-
-
-

@@ -2,48 +2,44 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Order 
+public class Order
 {
-	public ArrayList<Product> orderedProducts;
-	
-	public Order() 
+	private ArrayList<Product> orderedProducts;
+
+	public Order()
 	{
 		orderedProducts = new ArrayList<>();
 	}
 	public void addProduct(Product product) {
 		orderedProducts.add(product);
 	}
-	public void listOrder() 
+	public void listOrder()
 	{
 		if(orderedProducts.size()==0)
 		{
 			System.out.println("You have not ordered anything yet");
 		}
-		else 
+		else
 		{
 			for (Product orderedProduct: orderedProducts)
 			{
 				System.out.println(orderedProduct);
 			}
 		}
-		public ArrayList<Product> getOrderedProducts()
+	}
+	public ArrayList<Product> getOrderedProducts()
 	{
 		return orderedProducts;
 	}
 	public double calculateTotalPrice()
 	{
 		double totalPrice = 0.0;
-		for(int i = 0 ; i< orderedProducts.size() ; i++) 
+		for(int i = 0 ; i< orderedProducts.size() ; i++)
 		{
 			totalPrice += orderedProducts.get(i).getSellingPrice();
 		}
 		return totalPrice;
 	}
-			public void giveBill()
-	{
-		System.out.println("Your bill is " + calculateTotalPrice());
-	}
-
 	public double calculateOrderExpenses() {
 		double orderExpense = 0.0;
 		for(Product orderedProduct: orderedProducts) {
@@ -53,5 +49,3 @@ public class Order
 	}
 
 }
-	
-
