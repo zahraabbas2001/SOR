@@ -1,60 +1,64 @@
 package Model;
 
-public abstract class Product implements Expense {
+public class Product implements Expense
+{
 	private String name;
 	private double purchasePrice;
 	private double sellingPrice;
 	private double utilityCost;
-
-
-
-
-	public Product(String name, double purchasePrice, double sellingPrice, double utilityCost) {
-
-		this.name = name;
-		this.purchasePrice = purchasePrice;
-		this.sellingPrice = sellingPrice;
-		this.utilityCost = utilityCost;
+	public Product(String n , double s , double p, double u)
+	{
+		name = n;
+		sellingPrice = s;
+		purchasePrice = p;
+		utilityCost = u;
 	}
-	public void setPurchasePrice(double purchasePrice) {
-		this.purchasePrice = purchasePrice;
+	public Product(String n) {
+		name = n;
 	}
-	public Product(String name) {
-
-		this.name= name;
-	}
-
-	public String getName() {
+	//Getter Functions
+	public String getName()
+	{
 		return name;
 	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public double getPurchasePrice() {
+	public double getPurchasePrice()
+	{
 		return purchasePrice;
 	}
-
-
-
-	public double getSellingPrice() {
+	public double getSellingPrice()
+	{
 		return sellingPrice;
 	}
-
-
-	public void setSellingPrice(double sellingPrice) {
-		this.sellingPrice = sellingPrice;
-	}
-
-	public double getUtilityCost() {
+	public double getUtilityCost()
+	{
 		return utilityCost;
 	}
-
-	public String toString() {
-		return " Product Name: " +name+ "  ";
+	//Setter Functions
+	public void setName(String name)
+	{
+		this.name = name;
 	}
-}
+	public void setSellingPrice(double sellingPrice)
+	{
+		this.sellingPrice = sellingPrice ;
+	}
+	public void setPurchasePrice(double purchasePrice)
+	{
+		this.purchasePrice = purchasePrice;
+	}
+	public void setUtilityCost(double utilityCost) {
+		this.utilityCost = utilityCost;
+	}
+	public String toString()
+	{
+		return this.name + ": " + this.sellingPrice;
+	}
+	@Override
+	public double calculateExpense() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
+
+
+}
