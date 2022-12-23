@@ -10,7 +10,7 @@ import javax.swing.JTable;
 
 import Model.Restaurant;
 
-public class CalculateExpenseAction implements ActionListener{
+public class ListEmployeeAction implements ActionListener{
     private RestaurantPanel restaurantPanel;
 
     public void ListEmployeeAction(RestaurantPanel restaurantPanel){

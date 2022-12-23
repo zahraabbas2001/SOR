@@ -15,10 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
 
-public class AddCookAction extends JPanel implements ActionListener {
+import Model.*;
+
+public class addCookAction extends JPanel implements ActionListener {
     private Restaurant restaurant;
 
-    public AddCookAction(Restaurant restaurant) {
+    public addCookAction(Restaurant restaurant) {
         this.restaurant = restaurant;
         setLayout(new BorderLayout());
     }
