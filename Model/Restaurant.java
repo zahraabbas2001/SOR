@@ -1,53 +1,33 @@
 package Model;
 
-import java.io.IOException;
-import java.sql.*;
-import java.util.*;
+import GUI.AddCookAction;
+import Model.Beverage;
 
+import java.util.ArrayList;
+import java.util.Random;
 
-public class Restaurant
-{
-
-	private static final String DB_USER = "root";
-	private static final String DB_PASS = "123Zaraaa_";
-	private static final String URL = "jdbc:mysql://localhost:3306/sor";
-	private static Connection connection = null;
-
-	public static void establishConnection() {
-		try {
-			connection = DriverManager.getConnection(URL, DB_USER, DB_PASS);
-		} catch (SQLException e) {
-			throw new RuntimeException("unhandled", e);
-		}
-	}
+public class Restaurant {
 	private ArrayList<Employee> employees = new ArrayList<>();
-	private ArrayList<Product> products = new ArrayList<>();
+	private ArrayList<AddCookAction.Product> products = new ArrayList<>();
 
-	public Restaurant()
-	{
-		establishConnection();
+	public Restaurant() {
+		initEmployees();
 		initProducts();
 	}
 
-	public void listEmployees() throws SQLException {
-		Statement stmt = connection.createStatement();
-		String sql2 = "SELECT name FROM Cook";
-		ResultSet rs = stmt.executeQuery(sql2);
-		while (rs.next()) {
-			System.out.println(rs.getString("name"));
-		}
-		String sql = "SELECT name FROM Waiter";
-		ResultSet rs2 = stmt.executeQuery(sql);
-		while (rs2.next()) {
-			System.out.println(rs2.getString("name"));
-		}
+	private void initEmployees() {
+
+		addCook("Monica", 100);
+
+		addWaiter("Ross");
+		addWaiter("Phobe");
+		addWaiter("Rachel");
 	}
 
-	private void initProducts()
-	{
+	private void initProducts() {
 
-		// Parameters for Product Constructor:
-		// Product Name, Selling Price, Purchase Price and Utility Cost
+		// Parameters for GUI.AddCookAction.Product Constructor:
+		// GUI.AddCookAction.Product Name, Selling Price, Purchase Price and Utility Cost
 
 		products.add(new MainDish("Pizza", 6, 2, 2));
 		products.add(new MainDish("Burger", 5, 1.5, 2));
@@ -59,106 +39,86 @@ public class Restaurant
 		products.add(new Dessert("Cake", 3, 0.5, 1));
 		products.add(new Dessert("Ice Cream", 3, 0.5, 0.5));
 
-		ArrayList<Product> HGproducts = new ArrayList<>();
+		ArrayList<AddCookAction.Product> HGproducts = new ArrayList<>();
 		HGproducts.add(new MainDish("Pizza", 6, 2, 2));
 		HGproducts.add(new Beverage("Coke", 2, 0.5));
 		HGproducts.add(new Dessert("Tiramusu", 4, 1, 1));
 		products.add(new MenuProduct("Hunger Games Menu", HGproducts));
 
-		ArrayList<Product> Kidsproducts = new ArrayList<>();
+		ArrayList<AddCookAction.Product> Kidsproducts = new ArrayList<>();
 		Kidsproducts.add(new MainDish("Burger", 5, 1.5, 2));
 		Kidsproducts.add(new Beverage("Lemonade", 2, 0.3));
 		Kidsproducts.add(new Dessert("Ice Cream", 3, 0.5, 0.5));
 		products.add(new MenuProduct("Kids Menu", Kidsproducts));
 	}
 
-	public void addCook(String name, double salary) throws IOException, SQLException {
+	public void listEmployees() {
+		System.out.println(employees.toString());
+	}
+	public void addCook(String name, double salary) {
+		employees.add(new Cook(employees.size()+1, name, salary));
+	}
 
-		Statement stmt = connection.createStatement();
-		String sql =  "INSERT INTO Cook (name, salary) " +
-				"VALUES ('" + name + "', " + salary + ")";
-		stmt.executeUpdate(sql);
+	public void addWaiter(String name) {
+		employees.add(new Waiter(employees.size()+1, name));
+	}
+
+	public Waiter assignWaiter() {
+		Random a =new Random();
+		int b=a.nextInt(this.employees.size());
+		for(int i=0;i<employees.size();i++) {
+
+			if(employees.get(b) instanceof Waiter) {
+				//return (Model.Waiter) employees.get(b);
+				break;
+			}
+			else {
+				b=a.nextInt(this.employees.size());}
+
+
+		}
+		return (Waiter) employees.get(b);
+
 
 	}
-	public void addWaiter(String name, int salary) throws IOException, SQLException {
 
-		Statement stmt = connection.createStatement();
-		String sql =  "INSERT INTO Waiter (name, salary) " +
-				"VALUES ('" + name + "', " + salary + ")";
-		stmt.executeUpdate(sql);
-	}
-	public Waiter assignWaiter()
-	{
-		ArrayList<Waiter> waiters = new ArrayList<>();
-		for(Employee employee : employees)
-		{
-			if(employee instanceof Waiter)
-			{
-				waiters.add((Waiter)employee);
+	public double calculateExpenses() {
+		double expenses = 0.0;
+		for (int a = 0; a < employees.size(); a++) {
+			expenses=expenses+ this.employees.get(a).calculateExpense();
+			for (int i = 0; i < employees.size(); i++) {
+				if(this.employees.get(i) instanceof Waiter) {
+					for(Order order : ((Waiter) employees.get(i)).getOrdersReceived()){
+						for(AddCookAction.Product p : order.getOrderedProducts()){
+							expenses = expenses + p.calculateExpense();
+						}
+					}
+				}
+				//expenses=expenses+((Model.Waiter) employees.get(a)).getOrdersReceived().
 			}
 		}
-		Random rand = new Random();
-		int randomIndex = rand.nextInt(waiters.size());
-		return waiters.get(randomIndex);
+		return expenses;
 	}
-	public double calculateEmployeeExpenses()
-	{
-		double employeesExpense = 0.0;
-		for(Employee employee : employees)
-		{
-			employeesExpense += employee.calculateExpense();
-		}
-		return employeesExpense;
-	}
-	public double calculateOrderExpenses()
-	{
-		ArrayList<Order> orderReceivedList = new ArrayList<>();
-		double ordersExpense = 0.0;
-		for(Employee employee : employees)
-		{
-			if(employee instanceof Waiter)
-			{
-				orderReceivedList = ((Waiter) employee).getOrdersReceived();
-				for(Order order : orderReceivedList)
-				{
-					ordersExpense += Order.calculateOrderExpenses();
+
+	public double calculateRevenue() {
+		double revenue = 0.0;
+		for (int i = 0; i < employees.size(); i++) {
+			if (this.employees.get(i) instanceof Waiter) {
+				for (Order order : ((Waiter) employees.get(i)).getOrdersReceived()) {
+					revenue += order.calculateTotalPrice();
 				}
 			}
 		}
-		return ordersExpense;
+		return revenue;
 	}
-	public double calculateExpenses()
-	{
-		return this.calculateEmployeeExpenses() + this.calculateOrderExpenses();
+
+	public ArrayList<Employee> getEmployees() {
+		return employees;
 	}
-	public double calculateRevenue()
-	{
-		ArrayList<Order> orderReceivedList = new ArrayList<>();
-		double totalRevenue = 0.0;
-		for(Employee employee : employees)
-		{
-			if(employee instanceof Waiter)
-			{
-				orderReceivedList = ((Waiter) employee).getOrdersReceived();
-				for(Order order : orderReceivedList)
-				{
-					totalRevenue += order.calculateTotalPrice();
-				}
-			}
-		}
-		return totalRevenue;
-	}
-	public ArrayList<Product> getProducts()
-	{
+
+
+	public ArrayList<AddCookAction.Product> getProducts() {
 		return products;
 	}
 
 }
-
-
-
-// Implement the rest of the class
-
-
-
-
