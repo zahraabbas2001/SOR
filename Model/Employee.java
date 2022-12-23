@@ -33,7 +33,7 @@ public class Employee implements Expense {
         int var10000 = this.getID();
         return "Employee " + var10000 + ": " + this.getName();
     }
-
+    
     public double calculateExpense() {
         return 0.0;
     }
