@@ -1,39 +1,51 @@
 package Model;
 
-import GUI.AddCookAction;
-
 import java.util.ArrayList;
 
-public class Order {
+public class Order
+{
+	private ArrayList<Product> orderedProducts;
 
-	private ArrayList<AddCookAction.Product> products = new ArrayList<> ();
-
-	public Order() {
-
+	public Order()
+	{
+		orderedProducts = new ArrayList<>();
 	}
-	public void addProduct(AddCookAction.Product product) {
-		products.add(product);
+	public void addProduct(Product product) {
+		orderedProducts.add(product);
 	}
-	public void listOrder() {
-		if(products.size()==0) {
-			System.out.println("You should order first. You haven't order anything.");
+	public void listOrder()
+	{
+		if(orderedProducts.size()==0)
+		{
+			System.out.println("You have not ordered anything yet");
 		}
-		for(int i=0;i<products.size();i++) {
-			System.out.println(products.get(i).getName()+"  "+products.get(i).getSellingPrice());
+		else
+		{
+			for (Product orderedProduct: orderedProducts)
+			{
+				System.out.println(orderedProduct);
+			}
 		}
 	}
-	public ArrayList<AddCookAction.Product> getOrderedProducts() {
-		return this.products;
+	public ArrayList<Product> getOrderedProducts()
+	{
+		return orderedProducts;
 	}
-
-	public double calculateTotalPrice() {
-		double cost=0.0;
-		for(int a=0;a<products.size();a++) {
-			cost=cost+products.get(a).getSellingPrice();
+	public double calculateTotalPrice()
+	{
+		double totalPrice = 0.0;
+		for(int i = 0 ; i< orderedProducts.size() ; i++)
+		{
+			totalPrice += orderedProducts.get(i).getSellingPrice();
 		}
-		return cost;
+		return totalPrice;
+	}
+	public double calculateOrderExpenses() {
+		double orderExpense = 0.0;
+		for(Product orderedProduct: orderedProducts) {
+			orderExpense += orderedProduct.calculateExpense();
+		}
+		return orderExpense;
 	}
 
 }
-
-
