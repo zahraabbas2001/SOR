@@ -1,5 +1,7 @@
 package GUI;
 
+import Model.Restaurant;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;

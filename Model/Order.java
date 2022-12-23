@@ -13,25 +13,21 @@ public class Order
 	public void addProduct(Product product) {
 		orderedProducts.add(product);
 	}
-	public void listOrder() 
-	{
-		if(orderedProducts.size()==0)
-		{
+	public ArrayList<Product> listOrder() {
+		if (orderedProducts.size() == 0) {
 			System.out.println("You have not ordered anything yet");
-		}
-		else 
-		{
-			for (Product orderedProduct: orderedProducts)
-			{
+		} else {
+			for (Product orderedProduct : orderedProducts) {
 				System.out.println(orderedProduct);
 			}
 		}
-		public ArrayList<Product> getOrderedProducts()
-	{
-		return orderedProducts;
 	}
-	public double calculateTotalPrice()
-	{
+		public ArrayList<Product> getOrderedProducts(){
+
+			return orderedProducts;
+		}
+	public double calculateTotalPrice(){
+
 		double totalPrice = 0.0;
 		for(int i = 0 ; i< orderedProducts.size() ; i++) 
 		{
